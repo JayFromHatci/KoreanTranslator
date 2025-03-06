@@ -1,0 +1,15 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <form action="/action_page.php">
+        <label for="kText">Enter Korean text Here:</label> <!--Replace later with drag name drop excel file-->
+        <input type="text" id="kText" name="korean text"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
