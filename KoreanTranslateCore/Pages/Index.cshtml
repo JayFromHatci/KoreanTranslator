@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -6,10 +6,11 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <form action="/action_page.php">
-        <label for="kText">Enter Korean text Here:</label> <!--Replace later with drag name drop excel file-->
-        <input type="text" id="kText" name="korean text"><br><br>
-        <input type="submit" value="Submit">
-    </form>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <!--Replace later with drag name drop excel file below-->
+    <label for="kText">Enter Korean text here:</label> 
+    <input type="text" id="kText" name="korean text"><br><br>
+    <a asp-controller="Translate" 
+        type="button" class="btn btn-primary" value="Translate">Translate dis shit
+    </a>
 </div>
+<p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
