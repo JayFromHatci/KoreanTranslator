@@ -1,0 +1,15 @@
+﻿@page "{message?}"
+@model ResultModel
+@{
+    ViewData["Title"] = "Result Page";
+}
+
+<div class="text-center">
+    <h1 class="display-2">Translation Result</h1>
+
+    
+    <p>The time is @DateTime.Now</p>
+    <br />
+    <p>@Model.Message</p> <!--this is the input from index page-->
+
+</div>
