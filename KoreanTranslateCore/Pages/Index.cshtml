@@ -4,18 +4,15 @@
     ViewData["Title"] = "Home page";
 }
 
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <!--Replace later with drag name drop excel file below-->
-    <form runat="server" method="post" enctype="application/x-www-form-urlencoded">
-    <!--use enctype="multipart/form-data" for excel uploading capabilities-->
-        <label for="kText">Enter Korean text here:</label> 
-        <input type="text" id="kText" name="kText"><br><br>
-        <input type="button" value="Translate dis shit" onclick="window.open('@Url.Action("Translate", "Translate")')" />
+    <h1 class="display-4">Welcome</h1>	
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="uploadedFile" />
+        <input type="submit" value="Upload" />
     </form>
+    
+
+
 </div>
-<p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a></p>
+
