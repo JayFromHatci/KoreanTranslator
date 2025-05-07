@@ -1,15 +1,44 @@
-﻿@page "{message?}"
+@page "{message?}"
 @model ResultModel
 @{
     ViewData["Title"] = "Result Page";
 }
 
-<div class="text-center">
-    <h1 class="display-2">Translation Result</h1>
 
-    
-    <p>The time is @DateTime.Now</p>
-    <br />
-    <p>@Model.Message</p> <!--this is the input from index page-->
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
 
-</div>
+
+        .button {
+            background-color: #003082; 
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: crosshair;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-2">Translation Result</h1>
+        <p>The time is @DateTime.Now</p>
+        <br />
+        <!-- <p>@Model.Message</p> //this is the input from index page-->
+
+        <form method="post" asp-page-handler="DownloadFile">
+            <button type="submit" class="button">Download File</button>
+        </form>
+
+    </div>
+
+</body>
+</html>
+
