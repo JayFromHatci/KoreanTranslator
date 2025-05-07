@@ -1,0 +1,61 @@
+@page
+@model transModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+  
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+     
+        .button {
+            background-color: #003082; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: crosshair;
+        }
+
+        .button2 {
+            background-color: #4c6ea7;
+        }
+        /* Blue */
+        .button3 {
+            background-color: #99accd;
+        }
+        /* Red */
+        .button4 {
+            background-color: #e5eaf2;
+            color: black;
+        }
+        /* Gray */
+        .button5 {
+            background-color: #aaaaaa;
+        }
+        /* Black */
+    </style>
+</head>
+<body>
+    <div class="text-left">
+        <h1 class="display-5">Translation Services</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="uploadedFile" />
+            <input class="button" type="submit" value="Translate" />
+        </form>
+
+    </div>
+</body>
+</html>
+
+
