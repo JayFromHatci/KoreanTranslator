@@ -1,18 +1,94 @@
 @page
-@model IndexModel
+@model webTranslator.Pages.IndexModel
 @{
-    ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>	
-
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="uploadedFile" />
-        <input type="submit" value="Upload" />
-    </form>
-    
 
 
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
 
+        body{
+          <!--  background: linear-gradient(to bottom, #1e5799 0%,#207cca 37%,#2989d8 63%,#2989d8 63%,#2989d8 67%,#7db9e8 84%);--></> 
+          background: #cfe0ff;
+            background: #bdd5ff;
+            background: linear-gradient(to bottom, rgba(189, 213, 255, 1) 0%, rgba(163, 201, 255, 1) 100%);
+            font-family: 'Hyundai Sans Head Pro Regular';
+        }
+
+        .header {
+            display: flex;
+        }
+
+        .textbox1 {
+            display: inline ;
+            border-radius: 10px 10px 10px;
+            flex-direction: column;
+            justify-content: left;
+            
+            border: 3px solid black;
+            color: white;
+            background-color: #00153B;
+            padding: 5px;
+ 
+            position: absolute;
+			top: 35%;
+          
+
+        }
+
+.fade-in-text {
+  font-family: Arial;
+  font-size: 60px;
+  animation: fadeIn 5s;
+
+
+
+}
+        @@keyframes fadeIn
+        {
+            0% {opacity: 0; }
+
+            100% {opacity: 1; }
+
+        }
+}
+
+    </style>
+
+   
+</head>
+<body>
+
+
+
+	<div class="text-left fade-in-text">
+		<h1 class="display-4">
+            
+            <span class="textbox1" >
+                Autonomous <br />
+                Parking<br />
+                Team
+            </span>
+
+        </h1>
+
+
+	</div>
+
+
+    <div>
+
+
+    </div>
+
+
+
+  
+
+
+
+</body>
+</html>
