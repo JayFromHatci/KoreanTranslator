@@ -6,7 +6,7 @@ using Microsoft.Office.Interop.Excel;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-
+using Application = Microsoft.Office.Interop.Excel.Application;
 
 
 namespace webTranslator.Pages;
