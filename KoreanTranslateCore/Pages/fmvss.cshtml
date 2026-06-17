@@ -1,0 +1,52 @@
+﻿@page
+@model webTranslator.Pages.fmvssModel
+@{
+    ViewData["Title"] = " Arc-Time Calculator ";
+}
+
+<style>
+    h2 {
+        font-family: 'Hyundai Sans Head Pro Regular';
+    }
+
+    body {
+        background: #e5eaf2;
+        font-family: 'Hyundai Sans Head Pro Regular';
+        font-size: 15px;
+        color: #3D52A0;
+    }
+
+</style>
+<body>
+    <div class="text-center" >
+    <h1 >FMVSS 111 Arc-Time Calculator</h1> 
+
+        <form method="post" style="color: #3D52A0">
+
+        <label for="CylA">CylA:</label>
+        <input type="number" id="CylA" name="CylA" step="any" required />
+
+        <label for="CylB">CylB:</label>
+        <input type="number" id="CylB" name="CylB" step="any"  />
+
+        <label for="CylC">CylC:</label>
+        <input type="number" id="CylC" name="CylC" step="any"  />
+
+        <br /><br />
+
+        <label for="Sscale">Sscale:</label>
+        <input type="number" id="Sscale" name="Sscale" step="any" required />
+
+        <label for="Aeye">Aeye:</label>
+        <input type="number" id="Aeye" name="Aeye" step="any" required /><br /><br />
+
+        <button type="submit" style="background-color:mediumseagreen; color: white">Calculate</button>
+
+		</form>
+
+
+       
+        <img src="/images/FMVSS Cylinder placement.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+</div>
+
+</body>

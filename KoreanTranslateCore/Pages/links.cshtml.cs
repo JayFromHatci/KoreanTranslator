@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace webTranslator.Pages
 {
-    public class IndexModel : PageModel
+    public class linksModel : PageModel
     {
         public void OnGet()
         {

@@ -1,0 +1,98 @@
+﻿@page
+@model webTranslator.Pages.CANapeModel
+@{
+	ViewData["Title"] = " CANape Setup ";
+}
+
+<style>
+
+	h2 {
+		font-family: 'Hyundai Sans Head Pro Regular';
+	}
+
+	body {
+		background: #e5eaf2;
+		font-family: 'Hyundai Sans Head Pro Regular';
+		font-size: 15px;
+		color: #3D52A0;
+		clear:right;
+	}
+
+	#textbx {
+		border-radius: 20px;
+		background: #f6f6f6;
+		padding-left: 35px;
+		padding-right: 5px;
+		padding-top: 10px;
+		padding-bottom: 5px;
+	}
+
+</style>
+
+<html>
+<body>
+
+	<h1 class="text-center">
+		Setting Up CANape
+	</h1>
+
+	<h3>Device Configuration</h3>
+	<p >
+		<ol id ="textbx">
+			<li>Open CANape and create new project. Select project path/directory as well.</li>
+			<img src="/images/directory.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 20px auto; " /><br />
+			<li>Click on 'Devices' on the top of the ribbon</li>
+			<li>Click on 'New Device' on the ribbon</li>
+			<img src="/images/devices.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+			<img src="/images/Dconfiguration.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+			<li>In New Device menu, click on 'Monitor' and select 'CAN'</li>
+			<li>Input device name, such as: E_CAN, C_CAN, .etc</li>
+			<li>Click 'OK'</li>
+			<img src="/images/can.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+			<li>Under Database name, select 'Browse' and select corresponding DBC file per CAN Channel</li>
+			<li>Click 'Next'</li>
+			<img src="/images/dbc.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+			<li>Select/Create Network</li>
+			<img src="/images/selectnetwork.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+			<li>If creating new network, name network respectively to device(s) planned to be on that CAN network and select which CAN Channel you want the network to be mapped to.</li>
+			<img src="/images/networknew.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+			<li>Click 'Change' under CAN Bus Parameter</li>
+			<li>Change mode to CAN-FD</li>
+			<li>Under Arbitration Phase, set the following:</li>
+			<ul>
+				<li>Baud rate [kBaud]: 500.0</li>
+				<li>Sample Point [%]: 80.0</li>
+				<li>Prescaler: 2</li>
+			</ul>
+			<li>Under Data Phase, set the following</li>
+			<ul>
+				<li>
+					Baud rate [kBaud]: 2000.0
+				</li>
+				<li>Sample Point [%]: 75.0</li>
+				<li>Prescaler: 1</li>
+			</ul>
+			<li>Click 'OK'</li>
+			<img src="/images/phase.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+			<li>Save and Close the menu by clicking on the Red Door icon in the top left</li>
+			<li>Save and Close by clicking the Red Door icon</li>
+			<img src="/images/completenetwork.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+			<li>Select on the newly created network and click 'OK'</li>
+			<img src="/images/selectnewnetwork.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+			<li>Click on red door icon to save and close settings menu for the network</li>
+			<img src="/images/newnetworksetting.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+			<li>Setup measurement page</li>
+			<img src="/images/page.png" alt="Logo" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 40px auto;" />
+			<li>In Symbol Explorer, click on Devices → the name of your network(in this case,E_CAN) → Database → Signals → Select Signals and drag onto page. Set as Graphic Window, Numeric Window, etc.  </li>
+
+
+		<div style="font-size: 20px">
+			<br />
+			<br />
+			Continue configuration setup until all necessary signals are added to the page.
+		</div>
+
+		</ol>
+	</p>
+</body>
+</html>

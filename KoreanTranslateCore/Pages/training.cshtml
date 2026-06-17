@@ -1,0 +1,237 @@
+﻿@page
+@model webTranslator.Pages.trainingModel
+@{
+	ViewData["Title"] = " Training ";
+}
+<style>
+
+	h2 {
+		font-family: 'Hyundai Sans Head Pro Regular';
+	}
+
+	body {
+		background: #e5eaf2;
+		font-family: 'Hyundai Sans Head Pro Regular';
+		font-size: 15px;
+		color: #3D52A0;
+	}
+	#textbx{
+		border-radius: 20px ;
+		background: #f6f6f6; 
+		padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 10px; 
+		padding-bottom: 5px;
+	}
+
+</style>
+<html>
+<body>
+
+
+
+	<h1 class="text-center">ADAS Overview</h1>
+	<p id="textbx">
+		ADAS (Advanced Driver Assistance Systems) is a technology that enhances vehicle safety and driving experience by providing features such as adaptive cruise control, lane-keeping assistance, and automatic emergency braking. It uses multiple sensors to monitor the vehicle's surroundings and assist the driver in making informed decisions.
+		
+	</p>
+
+	<img src="/images/overview.png" alt="Logo" style="width: 250%; max-width: 1080px; height: auto; display: block; margin: 20px auto;" />
+
+	<div id="textbx">
+	<h4>ADAS Parking Features</h4>
+	<p  >
+		HMC (ADAS) Parking features include: RSPA, PCA-F/S/R, PDW, SVM/RVM and more currently in development. All autonomous parking features are computed and processed in the ADAS_PRK Module in the vehicle. <br />
+		<ol >
+			<li type="square">
+				RSPA 2(Remote Self-Park Assist) uses ultrasonic sensors and the surround view cameras to perform autonomous parking maneuvers for perpendicular, parallel and angled parking spaces. <br />
+
+				<ul>
+					<li>RSPA 1.5 utilizes only the vehicle's ultrasonic sensors to perform the autonomous parking maneuvers for perpendicular, parallel and angled parking. '</li>
+					<li>
+						RSPA (Entry) utilizes the key-fob to perform forward and reverse maneuver with limited obstacle steering avoidance.<br />
+
+					</li>
+				</ul>
+			</li>
+
+			<br />
+			<li type="square">
+				PCA-F/S/R (Pedestrian Collision Assist - Front/Side/Rear) uses ultrasonic sensors and Camera detection to detect pedestrians and objects taller than 15cm and automatically applies the brakes to prevent collisions up to 6kph for objects and 10kph for pedestrians.
+				<br />
+				<ul>
+					<li>
+						APD (Autonomous Parking Development) Team performs validation of this feature according to the NHTSA (National Highway Traffic Safety Administration) Rear AEB (Automatic Emergency Braking) Draft in addition to North American specific scnearios the team has compiled in the autonomous parking validation checklist.
+					</li>
+				</ul>
+			</li>
+			<br />
+			<li type="square">PDW (Parking Distance Warning) uses ultrasonic sensors to detect obstacles around the vehicle and provides visual and audible warnings of the objects within the vehicle's proximity. <br /></li>
+			<br />
+			<li type="square">
+				SVM (Surround View Monitor) uses 4 cameras. Located on the front, rear and both side mirrors to provide a 360-degree view of the vehicle's surroundings. The system displays the camera feed on the infotainment screen to assist with parking and maneuvering in tight spaces.
+			</li>
+			<br />
+			<li type="square">RVM (Rear View Monitor) utilizes the rear facing camera to assist the driver in viewing behind the vehicle. Per the Federal Motor Vehicle Safety Standard 111, all vehicles sold after May of 2018 must be equipped with a rearview mirror. Regulation may be found <a href="https://www.federalregister.gov/documents/2019/10/10/2019-22036/federal-motor-vehicle-safety-standard-no-111-rear-visibility" target="_blank">here</a>.<br />
+				Autonomous Parking Development Team is responsible for performing the testing to ensure production vehicles will pass the FMVSS 111 requirements. The test procedure given by NHTSA can be found <a href="https://www.nhtsa.gov/sites/nhtsa.dot.gov/files/documents/tp-111-v01-final_tag.pdf" target="_blank">here</a>.
+			</li>
+
+			</ol>
+
+		</p>
+	</div>
+	<br />
+	<br />
+
+	<div id="textbx">
+
+	<h4>Autonomous Driving Features</h4>
+	<p>
+		HMC (ADAS) Driving features include: HDA/HDA 2, SCC/NSCC, ISLA, FCA, LKA, LFA, RCCA, BCA and more in development. All autonomous driving features are computed and processed in the ADAS_DRV Module.<br />
+		<ol>
+
+				<li type="square">
+					HDA (Highway Driving Assist) is a driving convenience function that helps maintain distance
+					from the vehicle ahead and drive at a speed, set by the driver and
+					helps center the vehicle in the lane when driving on a
+					highway/motorway.
+				<ul>
+
+					<li>
+							HDA 2 is the evolution of HDA, which is a driving convenience
+							system that keeps a set distance from the front car and centered in
+							the lane. HDA 2 will additionally assists with lane changes and
+							adjust the lateral position of the car in the lane for driver comfort.
+							▪ HDA 2 uses SCC and LFA to control the vehicle while driving on
+							state, federal highways and interstates. The system also uses 4
+							front/rear corner radars to detect other vehicles and adjust
+							lateral position if needed as well as assist with lane changes.
+					</li>
+
+				</ul>
+
+			</li>
+			<br />
+			<li type="square">
+					SCC (Smart Cruise Control)  is a smart form of conventional cruise control that will slow
+					down and speed up to match the front vehicle speed, never
+					exceeding the driver’s set-speed. SCC maintains vehicle set-speed and distance from front vehicle
+					by detecting objects in front with radar and camera. Driver can
+					set the distance by changing time-gap.
+					<ul>
+
+						<li>
+							SCC 2 is an enhanced form of smart cruise control that will slow
+							down and speed up to match the front vehicle speed, never
+							exceeding the driver’s set-speed.
+							When using LFA & SCC 2 at the same time, if the driver is
+							unresponsive or not detected by the In-cabin
+						</li>
+					</ul>
+
+
+
+
+
+			</li>
+			<br />
+			<li type="square">
+					NSCC (Navigation-based Smart Cruise Control) is a driving convenience system that automatically slows
+					down the vehicle to a safe speed while passing through a curve of a
+					certain radius. NSCC uses map data from the navigation to determine the radius
+					of an upcoming curve. The system will then slow down the
+					vehicle to a safe speed through the curve while SCC is engaged,
+					and will return to set speed after exiting curve.
+			</li>
+			<br />
+			<li type="square">
+					ISLA (Intelligent Speed Limit Assist) detects the speed limit through sign recognition and displays
+					the speed limit and helps the driver to maintain within the speed
+					limit of the road. Front view camera sign detection and navigation speed limits are
+					used together for ISLA.
+			</li>
+			<br />
+			<li type="square">
+				FCA (Front Collision Assist) utilizes the front facing radar and front facing camera to sense and detect possible incoming collisions and provide emergency braking.
+					<ul>
+						
+					<li>
+							FCA-Car detects collisions by identifying slowing down or
+							braking vehicles with front view camera only/and front radar.
+							There are two different system types used on HKMC vehicles,
+							front view camera-only & sensor fusion (front view camera +
+							front radar).
+						</li>
+						
+					<li>
+							FCA-Ped/Cyc detects collisions by identifying pedestrian or
+							cyclist using the with front view camera only/and front radar.
+							There are two different system types, front view camera-only &
+							sensor fusion (front view camera + front radar).
+					</li>
+				</ul>
+
+
+			</li><br />
+			<li type="square">
+					LKA (Lane Keep Assist) LKA helps prevent the vehicle from moving out of its lane by
+					applying steering torque back into the lane. LKA detects the lane markers on the road with the Front View
+					Camera, and assists the driver’s steering to keep the vehicle in
+					the lane. Note: This is not a centering feature, it is designed to activate
+					only when vehicle is leaving lane.
+			
+			</li><br />
+			<li type="square">
+					LFA (Lane Follow Assist) When LFA is on, and the operation conditions are met, the vehicle
+					will assist the driver in maintaining centered in the lane.
+					▪ LFA detects the lane markers on the road and front vehicles with
+					the Front View Camera on the windshield. This info is used to
+					assist the driver’s steering to keep the vehicle centered in the
+					lane.
+					<ul>
+						<br />
+						<li>
+							LFA 2 applies the addition of the Hands-on Detection (HOD)
+							sensor, which helps improve the detection performance of the
+							driver’s hands on the steering wheel.
+						</li>
+					</ul>
+			
+			</li><br />
+			<li type="square">
+					RCCA (Rear Cross-Traffic Collision Assist) RCCA warns driver when it senses a vehicle approaching from the
+					rear outer range whilst reversing, and will apply brakes if there is a
+					collision risk. Rear Cross-Traffic Collision-Avoidance Assist helps avoid
+					collisions with oncoming vehicles on the left and right sides of
+					the vehicle while reversing.
+			
+			
+			</li><br />
+			<li type="square">
+					BCA (Blind-Spot Collision Assist) detects the rear side vehicle using rear corner radars, and
+					applies braking on front opposite wheel in dangerous situations.
+					BCA, when driving forward to exit a parallel parking spot, warns the
+					driver of a vehicle using in the blind spot and assists braking
+			
+			</li>
+
+
+		</ol>
+
+
+	</p>
+	</div>
+
+
+
+
+	<p>
+		<br />Both autonomous parking and driving features communicate with other modules within the vehicle. Mainly the MDPS, ESC/Brake, Cluster, Navigation and Headunit. Additional information about each feature may be found in the Shared Drive: A:\TRAINING\Feature Description Presentation
+
+	</p>
+
+
+	</body>
+
+
+</html>

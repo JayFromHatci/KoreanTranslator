@@ -1,96 +1,126 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
-using System;
-using Microsoft.Office.Interop.Excel;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using Application = Microsoft.Office.Interop.Excel.Application;
+using System.Threading.Tasks;
+using DeepL;
+using System;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Presentation;
+using A = DocumentFormat.OpenXml.Drawing;
 
-
-namespace webTranslator.Pages;
-
-    public class transModel : PageModel
+public class TransModel : PageModel
 {
-    private string ResultMessage { get; set; } = string.Empty;
+    private readonly IWebHostEnvironment _environment;
 
-    private readonly ILogger<transModel> _logger;
-
-    public transModel(ILogger<transModel> logger)
+    public TransModel(IWebHostEnvironment environment)
     {
-        _logger = logger;
+        _environment = environment;
     }
 
-    public void OnGet()
+    // Renamed to avoid conflict with PageModel.File()
+    [BindProperty]
+    public IFormFile UploadedFile { get; set; }
+
+    public async Task<IActionResult> OnPostAsync()
     {
-
-    }
-
-
-    public IActionResult OnPost(IFormFile uploadedFile)
-    {
-        string kText = string.Empty;
-        if (uploadedFile != null && uploadedFile.Length > 0)
+        if (UploadedFile == null || UploadedFile.Length == 0)
         {
-            string filePath = Path.Combine(Path.GetTempPath(), uploadedFile.FileName);
-            using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
-            {
-                uploadedFile.CopyTo(stream);
-            }
+            ModelState.AddModelError(string.Empty, "Please upload a valid file.");
+            return Page();
+        }
 
-            if (System.IO.File.Exists(filePath))
-            {
-                Application excel = new Application();
-                Workbook wb = excel.Workbooks.Open(filePath);
-                Worksheet ws = wb.Worksheets[1];
+        var uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads");
+        var translatedFolder = Path.Combine(_environment.WebRootPath, "translated");
 
-                Microsoft.Office.Interop.Excel.Range usedRange = ws.UsedRange;
-                foreach (Microsoft.Office.Interop.Excel.Range row in usedRange.Rows)
+        Directory.CreateDirectory(uploadsFolder);
+        Directory.CreateDirectory(translatedFolder);
+
+        var originalPath = Path.Combine(uploadsFolder, UploadedFile.FileName);
+        var translatedFileName = $"translated_{UploadedFile.FileName}";
+        var translatedPath = Path.Combine(translatedFolder, translatedFileName);
+
+        // Save uploaded file
+        using (var stream = new FileStream(originalPath, FileMode.Create, FileAccess.Write, FileShare.None))
+        {
+            await UploadedFile.CopyToAsync(stream);
+        }
+
+        try
+        {
+            var authKey = "33f0b74f-bbb4-4184-9f5b-3f1a0d5adecc:fx"; // your key
+
+            var client = new DeepLClient(authKey);
+
+            if (System.IO.File.Exists(translatedPath))
+                System.IO.File.Delete(translatedPath);
+
+            var ext = Path.GetExtension(originalPath).ToLowerInvariant();
+
+            if (ext == ".pptx")
+            {
+                // Copy original PPTX to translated path first
+                System.IO.File.Copy(originalPath, translatedPath, true);
+
+
+                // Open copied file for editing
+                using (var ppt = PresentationDocument.Open(translatedPath, true))
                 {
-                    foreach (Microsoft.Office.Interop.Excel.Range cell in row.Columns)
+                    foreach (var slidePart in ppt.PresentationPart.SlideParts)
                     {
-                        if (cell.Value != null)
+                        var texts = slidePart.Slide.Descendants<A.Text>();
+                        foreach (var text in texts)
                         {
-                            kText += cell.Value.ToString() + " ||| ";
+                            if (!string.IsNullOrWhiteSpace(text.Text))
+                            {
+                                var result = await client.TranslateTextAsync(text.Text, null, "EN-US");
+                                text.Text = result.Text;
+                            }
                         }
                     }
-                    kText += Environment.NewLine;
                 }
-
-                wb.Close();
-                return RedirectToPage("Result", new { message = kText.Trim() });
-
             }
             else
             {
-                throw new FileNotFoundException("The specified file was not found.", filePath);
+                // Other files: translate normally
+                await client.TranslateDocumentAsync(
+                    new FileInfo(originalPath),
+                    new FileInfo(translatedPath),
+                    null,   // auto-detect source
+                    "EN-US" // target
+                );
             }
+
+            // Return translated file as download
+            byte[] fileBytes = System.IO.File.ReadAllBytes(translatedPath);
+
+            // Determine MIME type
+            string mimeType = ext switch
+            {
+                ".pptx" => "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                ".docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                ".pdf" => "application/pdf",
+                ".txt" => "text/plain",
+                ".html" => "text/html",
+                _ => "application/octet-stream"
+            };
+
+            return File(fileBytes, mimeType, translatedFileName);
         }
-        else
+        catch (DocumentTranslationException ex)
         {
-            return Page();
+            var message = ex.Message;
+            if (ex.DocumentHandle != null)
+                message += $" (Doc ID: {ex.DocumentHandle.Value.DocumentId})";
+
+            ModelState.AddModelError(string.Empty, message);
         }
+        catch (Exception ex)
+        {
+            ModelState.AddModelError(string.Empty, $"Unexpected error: {ex.Message}");
+        }
+
+        return Page();
     }
-
-    private void writeExcel()
-    {
-        string filePath = "C:\\Users\\R102500\\OneDrive - hatci.com\\Desktop\\Copy of WebApp Korean Test.xlsx";
-        Application excel = new Application();
-
-        Workbook wb;
-        Worksheet ws;
-
-        wb = excel.Workbooks.Open(filePath);
-        ws = wb.Worksheets[1];
-
-        Microsoft.Office.Interop.Excel.Range cellRange = ws.Range["A5"];
-        cellRange.Value = "this is English";
-
-        wb.SaveAs("C:\\Users\\R102500\\OneDrive - hatci.com\\Desktop\\Copy of WebApp Korean Test2.xlsx");
-        wb.Close();
-
-        Process.Start("C:\\Users\\R102500\\OneDrive - hatci.com\\Desktop\\Copy of WebApp Korean Test2.xlsx");
-    }
-
 }

@@ -1,0 +1,51 @@
+﻿@page
+@model webTranslator.Pages.fmvssResultModel
+@{
+    ViewData["Title"] = " Arc-Time Results ";
+}
+<style>
+
+    h2 {
+        font-family: 'Hyundai Sans Head Pro Regular';
+    }
+
+    body {
+        background: #e5eaf2;
+        font-family: 'Hyundai Sans Head Pro Regular';
+        font-size: 15px;
+        color: #3D52A0;
+    }
+
+</style>
+<body>
+<div class="text-left">
+    <h2 class="display-4">Arc-Time Calculation Results</h2>
+
+        <h3>Cylinder A</h3>
+        <p>Degrees: @Model.ArcDegreesA</p>
+        <p>Minutes: @Model.ArcMinutesA</p>
+        <p>Seconds: @Model.ArcSecondsA</p>
+
+        <h3>Cylinder B</h3>
+        <p>Degrees: @Model.ArcDegreesB</p>
+        <p>Minutes: @Model.ArcMinutesB</p>
+        <p>Seconds: @Model.ArcSecondsB</p>
+
+        <h3>Cylinder C</h3>
+        <p>Degrees: @Model.ArcDegreesC</p>
+        <p>Minutes: @Model.ArcMinutesC</p>
+        <p>Seconds: @Model.ArcSecondsC</p>
+
+        <h3>Averages for A, B, C:</h3>
+        <p>Degrees: @Model.ArcDegreesAvg</p>
+        <p>Minutes: @Model.ArcMinutesAvg</p>
+        <p>Seconds: @Model.ArcSecondsAvg</p>
+    
+        <form method="post">
+            <button type="submit" class="btn btn-primary">Another Calculation</button>
+        </form>
+</div>
+
+
+
+</body>

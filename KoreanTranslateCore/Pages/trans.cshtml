@@ -1,55 +1,43 @@
-@page
-@model transModel
+﻿@page
+@model TransModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "File Translation";
 }
+<style>
 
-<!DOCTYPE html>
+    h2 {
+        font-family: 'Hyundai Sans Head Pro Regular';
+    }
+
+    body {
+        background: #e5eaf2;
+        font-family: 'Hyundai Sans Head Pro Regular';
+        font-size: 15px;
+        color: #3D52A0;
+    }
+
+</style>
 <html>
-<head>
-    <style>
-     
-        .button {
-            background-color: #003082; /* Green */
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 12px;
-            margin: 4px 2px;
-            cursor: crosshair;
-        }
 
-        .button2 {
-            background-color: #4c6ea7;
-        }
-        /* Blue */
-        .button3 {
-            background-color: #99accd;
-        }
-        /* Red */
-        .button4 {
-            background-color: #e5eaf2;
-            color: black;
-        }
-        /* Gray */
-        .button5 {
-            background-color: #aaaaaa;
-        }
-        /* Black */
-    </style>
-</head>
 <body>
-    <div class="text-left">
-        <h1 class="display-5">Translation Services</h1>
-
-        <form method="post" enctype="multipart/form-data">
-            <input type="file" name="uploadedFile" />
-            <input class="button" type="submit" value="Translate" />
-        </form>
-
+	<h2>Translate to English</h2>
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <label>Select a  .pptx, or .xlsx file:</label>
+        <input type="file" name="UploadedFile" accept=".pptx,.xlsx" required />
     </div>
+    <br />
+    <button class="style: button1" type="submit">Translate</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div style="color: red; margin-top: 20px;">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <div>@error.ErrorMessage</div>
+        }
+    </div>
+}
 </body>
 </html>

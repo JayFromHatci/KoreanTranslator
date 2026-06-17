@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace KoreanTranslateCore.Pages;
+namespace webTranslator.Pages;
 
 public class PrivacyModel : PageModel
 {
