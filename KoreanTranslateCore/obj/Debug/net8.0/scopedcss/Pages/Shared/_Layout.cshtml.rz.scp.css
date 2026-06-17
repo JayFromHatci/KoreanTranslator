@@ -1,0 +1,56 @@
+/* ===============================
+   NAVIGATION STYLES
+   =============================== */
+
+nav[b-3g7bh350cl] {
+    background-color: #003082; /* solid background for visual clarity */
+    font-family: 'Hyundai Sans Head Pro Bold', sans-serif;
+}
+
+/* NON-DROPDOWN NAV LINKS */
+.navbar-nav > li.nav-item > a.nav-link[b-3g7bh350cl] {
+    color: yellow !important; /* normal state */
+    background-color: transparent !important;
+    transition: color 0.3s ease;
+}
+
+    .navbar-nav > li.nav-item > a.nav-link:hover[b-3g7bh350cl],
+    .navbar-nav > li.nav-item > a.nav-link:focus[b-3g7bh350cl] {
+       
+        background-color: transparent !important;
+        text-decoration: none;
+    }
+
+
+/* DROPDOWN MENU ITEMS */
+.dropdown-menu .dropdown-item[b-3g7bh350cl] {
+    color: black !important;
+}
+
+    .dropdown-menu .dropdown-item:hover[b-3g7bh350cl],
+    .dropdown-menu .dropdown-item:focus[b-3g7bh350cl] {
+        background-color: #f8f9fa !important;
+        color: #000 !important;
+    }
+
+/* Show dropdown on hover (optional desktop hover behavior) */
+.nav-item.dropdown:hover .dropdown-menu[b-3g7bh350cl] {
+    display: block;
+}
+
+/* Other global styles */
+a:not(.nav-link)[b-3g7bh350cl] {
+    color: #d493ff;
+}
+
+a:hover[b-3g7bh350cl] {
+    box-shadow: 0px 5px 0px blue;
+    font-size: 18px;
+}
+
+a.navbar-brand[b-3g7bh350cl] {
+    color: red;
+    background-color: #d493ff;
+    text-align: center;
+    word-break: break-word;
+}
