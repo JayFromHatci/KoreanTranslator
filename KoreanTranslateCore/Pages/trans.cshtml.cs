@@ -49,7 +49,7 @@ public class TransModel : PageModel
 
         try
         {
-            var authKey = "33f0b74f-bbb4-4184-9f5b-3f1a0d5adecc:fx"; // your key
+            var authKey = " "; // your key
 
             var client = new DeepLClient(authKey);
 
